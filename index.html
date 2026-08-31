@@ -1,0 +1,3200 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#111111">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="FitBro">
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>FitBro</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f2f2f2;
+    color: #111;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+.app {
+    max-width: 500px;
+    margin: auto;
+    min-height: 100vh;
+    padding-bottom: 90px;
+}
+
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+
+/* ================= START PROFILE ================= */
+
+.setup {
+    min-height: 100vh;
+    padding: 50px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.setup-logo {
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.setup-text {
+    color: #777;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+.input {
+    width: 100%;
+    padding: 17px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.goal {
+    width: 100%;
+    padding: 18px;
+    background: white;
+    border-radius: 14px;
+    margin-bottom: 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.goal.selected {
+    background: #111;
+    color: white;
+}
+
+.continue {
+    width: 100%;
+    padding: 17px;
+    background: #111;
+    color: white;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+
+/* ================= HEADER ================= */
+
+header {
+    padding: 25px 20px 10px;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.hello {
+    margin-top: 7px;
+    color: #777;
+}
+
+
+/* ================= HERO ================= */
+
+.hero {
+    margin: 20px;
+    padding: 30px;
+    background: #111;
+    color: white;
+    border-radius: 25px;
+}
+
+.hero h1 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #bbb;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.start {
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    background: white;
+    color: #111;
+    font-weight: bold;
+}
+
+
+/* ================= TITLE ================= */
+
+.title {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 25px 20px 15px;
+}
+
+
+/* ================= CATEGORIES ================= */
+
+.categories {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 0 20px;
+}
+
+.category {
+    background: white;
+    border-radius: 18px;
+    padding: 25px 10px;
+    text-align: center;
+    color: #111;
+}
+
+.category .emoji {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.category h3 {
+    font-size: 16px;
+}
+
+
+/* ================= FREE ================= */
+
+.free-box {
+    margin: 20px;
+    padding: 22px;
+    border-radius: 18px;
+    background: #111;
+    color: white;
+}
+
+.free-box h2 {
+    margin-bottom: 8px;
+}
+
+.free-box p {
+    color: #bbb;
+    line-height: 1.5;
+}
+
+
+/* ================= BACK ================= */
+
+.back {
+    margin: 20px;
+    padding: 11px 16px;
+    background: white;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+
+/* ================= WORKOUT ================= */
+
+.workout {
+    margin: 12px 20px;
+    padding: 18px;
+    background: white;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: calc(100% - 40px);
+    text-align: left;
+    color: #111;
+}
+
+.workout .emoji {
+    font-size: 40px;
+}
+
+.workout h3 {
+    margin-bottom: 6px;
+}
+
+.workout p {
+    color: #777;
+    font-size: 13px;
+}
+
+
+/* ================= EXERCISES ================= */
+
+.exercise-list {
+    padding: 0 20px;
+}
+
+.exercise {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    margin-bottom: 12px;
+}
+
+.exercise h3 {
+    margin-bottom: 7px;
+}
+
+.exercise p {
+    color: #777;
+}
+
+
+/* ================= CARD ================= */
+
+.card {
+    background: white;
+    margin: 15px 20px;
+    padding: 22px;
+    border-radius: 18px;
+}
+
+.card .big {
+    font-size: 45px;
+    margin-bottom: 10px;
+}
+
+.card h2 {
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #777;
+    line-height: 1.5;
+}
+
+.black-button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 18px;
+    border-radius: 10px;
+    background: #111;
+    color: white;
+    font-weight: bold;
+}
+
+
+/* ================= TIMER ================= */
+
+.timer {
+    text-align: center;
+    padding: 25px 20px;
+}
+
+.timer-name {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.timer-number {
+    font-size: 85px;
+    font-weight: bold;
+    margin: 30px 0;
+}
+
+.timer-button {
+    padding: 16px 45px;
+    border-radius: 12px;
+    background: #111;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.finish {
+    width: 100%;
+    padding: 16px;
+    border-radius: 12px;
+    background: #111;
+    color: white;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+
+/* ================= STREAK ================= */
+
+.streak-box {
+    margin: 20px;
+    padding: 25px;
+    background: #111;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.streak-fire {
+    font-size: 35px;
+}
+
+.streak-number {
+    font-size: 55px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.streak-box p {
+    color: #bbb;
+}
+
+
+/* ================= STATS ================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    padding: 0 20px;
+}
+
+.stat {
+    background: white;
+    padding: 18px 5px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.stat h2 {
+    font-size: 25px;
+}
+
+.stat p {
+    color: #777;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+/* ================= PROFILE ================= */
+
+.profile {
+    background: white;
+    margin: 20px;
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.avatar {
+    font-size: 65px;
+}
+
+.profile h2 {
+    margin-top: 10px;
+}
+
+.profile p {
+    color: #777;
+    margin-top: 5px;
+}
+
+.profile-goal {
+    margin-top: 15px;
+    padding: 12px;
+    background: #f2f2f2;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.option {
+    margin: 12px 20px;
+    padding: 18px;
+    background: white;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+
+/* ================= ACHIEVEMENTS ================= */
+
+.achievement {
+    margin: 12px 20px;
+    padding: 18px;
+    background: white;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.achievement-icon {
+    font-size: 35px;
+}
+
+.achievement h3 {
+    margin-bottom: 5px;
+}
+
+.achievement p {
+    color: #777;
+    font-size: 13px;
+}
+
+
+/* ================= SETTINGS ================= */
+
+.setting-box {
+    background: white;
+    margin: 15px 20px;
+    padding: 20px;
+    border-radius: 18px;
+}
+
+.setting-box h3 {
+    margin-bottom: 10px;
+}
+
+.setting-box p {
+    color: #777;
+    line-height: 1.5;
+}
+
+.reset {
+    width: 100%;
+    padding: 15px;
+    background: #111;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.change {
+    width: 100%;
+    padding: 15px;
+    background: #111;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+
+/* ================= SUCCESS ================= */
+
+.success {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.success .emoji {
+    font-size: 70px;
+}
+
+.success h1 {
+    margin: 15px 0;
+}
+
+.success p {
+    color: #777;
+    line-height: 1.5;
+}
+
+.success-button {
+    width: 100%;
+    padding: 16px;
+    background: #111;
+    color: white;
+    border-radius: 12px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+
+/* ================= NAV ================= */
+
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 500px;
+    height: 75px;
+    background: white;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 100;
+}
+
+nav button {
+    background: none;
+    font-size: 22px;
+    color: #111;
+}
+
+nav p {
+    font-size: 10px;
+    margin-top: 4px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= SETUP ================= -->
+
+<div id="setup" class="setup">
+
+<div class="setup-logo">
+FITBRO
+</div>
+
+<p class="setup-text">
+Let's create your fitness profile 💪
+</p>
+
+
+<input
+class="input"
+id="nameInput"
+type="text"
+placeholder="Your name"
+maxlength="20"
+>
+
+
+<p class="setup-text">
+What's your main goal?
+</p>
+
+
+<button
+class="goal"
+data-goal="Build Muscle">
+
+💪 Build Muscle
+
+</button>
+
+
+<button
+class="goal"
+data-goal="Lose Weight">
+
+🔥 Lose Weight
+
+</button>
+
+
+<button
+class="goal"
+data-goal="Get Stronger">
+
+🏋️ Get Stronger
+
+</button>
+
+
+<button
+class="goal"
+data-goal="Improve Endurance">
+
+🏃 Improve Endurance
+
+</button>
+
+
+<button
+class="continue"
+id="continueButton">
+
+START FITBRO
+
+</button>
+
+</div>
+
+
+
+<div class="app" id="app">
+
+
+<!-- ================= HOME ================= -->
+
+<div id="home" class="page">
+
+<header>
+
+<div class="logo">
+FITBRO
+</div>
+
+<div class="hello" id="hello">
+Hello!
+</div>
+
+</header>
+
+
+<div class="hero">
+
+<h1 id="heroTitle">
+Let's get stronger 💪
+</h1>
+
+<p id="heroText">
+Your fitness journey starts here.
+</p>
+
+<button
+class="start"
+id="startWorkout">
+
+START WORKOUT
+
+</button>
+
+</div>
+
+
+<div class="title">
+Categories
+</div>
+
+
+<div class="categories">
+
+
+<button
+class="category"
+id="strengthButton">
+
+<div class="emoji">
+💪
+</div>
+
+<h3>
+Strength
+</h3>
+
+</button>
+
+
+<button
+class="category"
+id="cardioButton">
+
+<div class="emoji">
+🏃
+</div>
+
+<h3>
+Cardio
+</h3>
+
+</button>
+
+
+<button
+class="category"
+id="nutritionButton">
+
+<div class="emoji">
+🥗
+</div>
+
+<h3>
+Nutrition
+</h3>
+
+</button>
+
+
+<button
+class="category"
+id="progressButton">
+
+<div class="emoji">
+📊
+</div>
+
+<h3>
+Progress
+</h3>
+
+</button>
+
+
+</div>
+
+
+<div class="free-box">
+
+<h2>
+💚 100% FREE
+</h2>
+
+<p>
+Every FitBro workout and feature is available for everyone.
+</p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- ================= WORKOUTS ================= -->
+
+<div id="workouts" class="page">
+
+
+<button
+class="back"
+id="backWorkout">
+
+← Back
+
+</button>
+
+
+<div class="title">
+Workouts 💪
+</div>
+
+
+<button
+class="workout"
+id="chest">
+
+<div class="emoji">
+💪
+</div>
+
+<div>
+
+<h3>
+Chest Workout
+</h3>
+
+<p>
+Push-ups • Bench Press • Chest Fly
+</p>
+
+</div>
+
+</button>
+
+
+<button
+class="workout"
+id="legs">
+
+<div class="emoji">
+🦵
+</div>
+
+<div>
+
+<h3>
+Leg Workout
+</h3>
+
+<p>
+Squats • Lunges • Calf Raises
+</p>
+
+</div>
+
+</button>
+
+
+<button
+class="workout"
+id="abs">
+
+<div class="emoji">
+🔥
+</div>
+
+<div>
+
+<h3>
+Abs Workout
+</h3>
+
+<p>
+Crunches • Plank • Leg Raises
+</p>
+
+</div>
+
+</button>
+
+
+<button
+class="workout"
+id="arms">
+
+<div class="emoji">
+💪
+</div>
+
+<div>
+
+<h3>
+Arms Workout
+</h3>
+
+<p>
+Biceps • Triceps • Push-ups
+</p>
+
+</div>
+
+</button>
+
+
+<button
+class="workout"
+id="back">
+
+<div class="emoji">
+🏋️
+</div>
+
+<div>
+
+<h3>
+Back Workout
+</h3>
+
+<p>
+Pull-ups • Rows • Superman
+</p>
+
+</div>
+
+</button>
+
+
+<button
+class="workout"
+id="shoulders">
+
+<div class="emoji">
+🏋️
+</div>
+
+<div>
+
+<h3>
+Shoulder Workout
+</h3>
+
+<p>
+Press • Raises • Pike Push-ups
+</p>
+
+</div>
+
+</button>
+
+
+<button
+class="workout"
+id="fullbody">
+
+<div class="emoji">
+🔥
+</div>
+
+<div>
+
+<h3>
+Full Body
+</h3>
+
+<p>
+Squats • Push-ups • Burpees
+</p>
+
+</div>
+
+</button>
+
+
+</div>
+
+
+
+<!-- ================= EXERCISES ================= -->
+
+<div id="exercisePage" class="page">
+
+<button
+class="back"
+id="backExercises">
+
+← Back
+
+</button>
+
+
+<div
+class="title"
+id="exerciseTitle">
+
+Workout
+
+</div>
+
+
+<div
+class="exercise-list"
+id="exerciseList">
+
+</div>
+
+</div>
+
+
+
+<!-- ================= TIMER ================= -->
+
+<div id="timerPage" class="page">
+
+<button
+class="back"
+id="backTimer">
+
+← Back
+
+</button>
+
+
+<div class="timer">
+
+<div
+class="timer-name"
+id="timerName">
+
+Exercise
+
+</div>
+
+
+<div
+class="timer-number"
+id="timerNumber">
+
+30
+
+</div>
+
+
+<button
+class="timer-button"
+id="timerButton">
+
+START
+
+</button>
+
+
+<button
+class="finish"
+id="finishWorkout">
+
+FINISH WORKOUT
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= CARDIO ================= -->
+
+<div id="cardio" class="page">
+
+<button
+class="back"
+id="backCardio">
+
+← Back
+
+</button>
+
+
+<div class="title">
+Cardio 🏃
+</div>
+
+
+<div class="card">
+
+<div class="big">
+🏃
+</div>
+
+<h2>
+Running
+</h2>
+
+<p>
+Improve endurance and stamina.
+</p>
+
+<button
+class="black-button"
+id="running">
+
+START
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="big">
+🚴
+</div>
+
+<h2>
+Cycling
+</h2>
+
+<p>
+Build your endurance.
+</p>
+
+<button
+class="black-button"
+id="cycling">
+
+START
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="big">
+🔥
+</div>
+
+<h2>
+HIIT
+</h2>
+
+<p>
+High intensity training.
+</p>
+
+<button
+class="black-button"
+id="hiit">
+
+START
+
+</button>
+
+</div>
+
+
+<div class="card">
+
+<div class="big">
+🪢
+</div>
+
+<h2>
+Jump Rope
+</h2>
+
+<p>
+Improve coordination and cardio.
+</p>
+
+<button
+class="black-button"
+id="jumpRope">
+
+START
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= NUTRITION ================= -->
+
+<div id="nutrition" class="page">
+
+<button
+class="back"
+id="backNutrition">
+
+← Back
+
+</button>
+
+
+<div class="title">
+Nutrition 🥗
+</div>
+
+
+<div class="card">
+
+<div class="big">
+🥩
+</div>
+
+<h2>
+Protein
+</h2>
+
+<p>
+Protein helps your body recover after exercise.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="big">
+💧
+</div>
+
+<h2>
+Water
+</h2>
+
+<p>
+Stay hydrated throughout the day.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="big">
+🍎
+</div>
+
+<h2>
+Fruits
+</h2>
+
+<p>
+Fruits provide vitamins and energy.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="big">
+🥦
+</div>
+
+<h2>
+Vegetables
+</h2>
+
+<p>
+Vegetables are important for a balanced diet.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="big">
+🍚
+</div>
+
+<h2>
+Carbohydrates
+</h2>
+
+<p>
+Carbs can provide energy for training.
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= PROGRESS ================= -->
+
+<div id="progress" class="page">
+
+<button
+class="back"
+id="backProgress">
+
+← Back
+
+</button>
+
+
+<div class="title">
+Your Progress 📊
+</div>
+
+
+<div class="streak-box">
+
+<div class="streak-fire">
+🔥
+</div>
+
+
+<div
+class="streak-number"
+id="streakNumber">
+
+0
+
+</div>
+
+
+<p>
+DAYS STREAK
+</p>
+
+</div>
+
+
+<div class="stats">
+
+
+<div class="stat">
+
+<h2 id="days">
+0
+</h2>
+
+<p>
+Days
+</p>
+
+</div>
+
+
+<div class="stat">
+
+<h2 id="workoutCount">
+0
+</h2>
+
+<p>
+Workouts
+</p>
+
+</div>
+
+
+<div class="stat">
+
+<h2 id="weeks">
+0
+</h2>
+
+<p>
+Weeks
+</p>
+
+</div>
+
+
+</div>
+
+
+<div class="title">
+Achievements 🏆
+</div>
+
+
+<div class="achievement">
+
+<div class="achievement-icon">
+🏆
+</div>
+
+<div>
+
+<h3>
+First Workout
+</h3>
+
+<p>
+Complete your first workout.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="achievement">
+
+<div class="achievement-icon">
+🔥
+</div>
+
+<div>
+
+<h3>
+3 Day Streak
+</h3>
+
+<p>
+Train for 3 days in a row.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="achievement">
+
+<div class="achievement-icon">
+🔥
+</div>
+
+<div>
+
+<h3>
+7 Day Streak
+</h3>
+
+<p>
+Train for 7 days in a row.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="achievement">
+
+<div class="achievement-icon">
+💪
+</div>
+
+<div>
+
+<h3>
+10 Workouts
+</h3>
+
+<p>
+Complete 10 workouts.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= PROFILE ================= -->
+
+<div id="profile" class="page">
+
+<button
+class="back"
+id="backProfile">
+
+← Back
+
+</button>
+
+
+<div class="title">
+Profile 👤
+</div>
+
+
+<div class="profile">
+
+<div class="avatar">
+😎
+</div>
+
+
+<h2 id="profileName">
+FitBro User
+</h2>
+
+
+<p>
+Fitness enthusiast
+</p>
+
+
+<div
+class="profile-goal"
+id="profileGoal">
+
+Goal
+
+</div>
+
+</div>
+
+
+<div
+class="option"
+id="profileProgress">
+
+📊 My Progress
+
+</div>
+
+
+<div
+class="option"
+id="profileSettings">
+
+⚙️ Settings
+
+</div>
+
+</div>
+
+
+
+<!-- ================= SETTINGS ================= -->
+
+<div id="settingsPage" class="page">
+
+<button
+class="back"
+id="backSettings">
+
+← Back
+
+</button>
+
+
+<div class="title">
+Settings ⚙️
+</div>
+
+
+<div class="setting-box">
+
+<h3>
+👤 Profile
+</h3>
+
+<p id="settingsName">
+Name
+</p>
+
+<p id="settingsGoal">
+Goal
+</p>
+
+<button
+class="change"
+id="changeProfile">
+
+CHANGE PROFILE
+
+</button>
+
+</div>
+
+
+<div class="setting-box">
+
+<h3>
+💾 Progress
+</h3>
+
+<p>
+Your workouts and streak are saved automatically on this device.
+</p>
+
+<button
+class="reset"
+id="resetProgress">
+
+RESET PROGRESS
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= SUCCESS ================= -->
+
+<div id="success" class="page">
+
+<div class="success">
+
+<div class="emoji">
+🎉
+</div>
+
+
+<h1>
+Workout Complete!
+</h1>
+
+
+<p id="successText">
+Great job! You completed your workout.
+</p>
+
+
+<button
+class="success-button"
+id="successProgress">
+
+VIEW PROGRESS
+
+</button>
+
+
+<button
+class="success-button"
+id="successHome">
+
+GO HOME
+
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- ================= NAV ================= -->
+
+<nav>
+
+<button id="navHome">
+
+🏠
+<p>Home</p>
+
+</button>
+
+
+<button id="navWorkout">
+
+💪
+<p>Workout</p>
+
+</button>
+
+
+<button id="navProgress">
+
+📊
+<p>Progress</p>
+
+</button>
+
+
+<button id="navProfile">
+
+👤
+<p>Profile</p>
+
+</button>
+
+</nav>
+
+
+
+<script>
+
+
+/* ================= VARIABLES ================= */
+
+
+let timer = null;
+
+let seconds = 30;
+
+let currentExercise = "";
+
+
+/* ================= STORAGE ================= */
+
+
+let userName =
+localStorage.getItem(
+"fitbroName"
+);
+
+
+let userGoal =
+localStorage.getItem(
+"fitbroGoal"
+);
+
+
+let workoutCount =
+Number(
+localStorage.getItem(
+"fitbroWorkoutCount"
+)
+) || 0;
+
+
+let streak =
+Number(
+localStorage.getItem(
+"fitbroStreak"
+)
+) || 0;
+
+
+let lastWorkout =
+localStorage.getItem(
+"fitbroLastWorkout"
+);
+
+
+/* ================= SETUP ================= */
+
+
+let selectedGoal = "";
+
+
+let goalButtons =
+document.querySelectorAll(
+".goal"
+);
+
+
+goalButtons.forEach(
+function(button) {
+
+
+button.addEventListener(
+"click",
+function() {
+
+
+goalButtons.forEach(
+function(item) {
+
+item.classList.remove(
+"selected"
+);
+
+});
+
+
+button.classList.add(
+"selected"
+);
+
+
+selectedGoal =
+button.dataset.goal;
+
+
+}
+);
+
+
+});
+
+
+/* ================= CONTINUE ================= */
+
+
+document
+.getElementById(
+"continueButton"
+)
+.addEventListener(
+"click",
+function() {
+
+
+let name =
+document
+.getElementById(
+"nameInput"
+)
+.value.trim();
+
+
+if (name === "") {
+
+
+alert(
+"Please enter your name."
+);
+
+
+return;
+
+}
+
+
+if (selectedGoal === "") {
+
+
+alert(
+"Please choose your goal."
+);
+
+
+return;
+
+}
+
+
+userName = name;
+
+userGoal =
+selectedGoal;
+
+
+localStorage.setItem(
+"fitbroName",
+userName
+);
+
+
+localStorage.setItem(
+"fitbroGoal",
+userGoal
+);
+
+
+startApp();
+
+
+}
+);
+
+
+/* ================= START APP ================= */
+
+
+function startApp() {
+
+
+document
+.getElementById(
+"setup"
+)
+.style.display =
+"none";
+
+
+document
+.getElementById(
+"app"
+)
+.style.display =
+"block";
+
+
+document
+.getElementById(
+"hello"
+)
+.innerText =
+"Hello, " +
+userName +
+" 👋";
+
+
+document
+.getElementById(
+"profileName"
+)
+.innerText =
+userName;
+
+
+document
+.getElementById(
+"profileGoal"
+)
+.innerText =
+"🎯 " +
+userGoal;
+
+
+document
+.getElementById(
+"settingsName"
+)
+.innerText =
+"Name: " +
+userName;
+
+
+document
+.getElementById(
+"settingsGoal"
+)
+.innerText =
+"Goal: " +
+userGoal;
+
+
+setGoalText();
+
+
+updateScreen();
+
+
+openPage(
+"home"
+);
+
+}
+
+
+/* ================= GOAL TEXT ================= */
+
+
+function setGoalText() {
+
+
+let title =
+document
+.getElementById(
+"heroTitle"
+);
+
+
+let text =
+document
+.getElementById(
+"heroText"
+);
+
+
+if (
+userGoal ===
+"Build Muscle"
+) {
+
+
+title.innerText =
+"Build Muscle 💪";
+
+
+text.innerText =
+"Let's build stronger muscles with FitBro.";
+
+}
+
+
+else if (
+userGoal ===
+"Lose Weight"
+) {
+
+
+title.innerText =
+"Burn & Move 🔥";
+
+
+text.innerText =
+"Let's stay active and reach your goal.";
+
+}
+
+
+else if (
+userGoal ===
+"Get Stronger"
+) {
+
+
+title.innerText =
+"Get Stronger 🏋️";
+
+
+text.innerText =
+"Let's become stronger every day.";
+
+}
+
+
+else if (
+userGoal ===
+"Improve Endurance"
+) {
+
+
+title.innerText =
+"Build Endurance 🏃";
+
+
+text.innerText =
+"Let's improve your stamina step by step.";
+
+}
+
+}
+
+
+/* ================= PAGE ================= */
+
+
+function openPage(page) {
+
+
+let pages =
+document.querySelectorAll(
+".page"
+);
+
+
+pages.forEach(
+function(item) {
+
+item.classList.remove(
+"active"
+);
+
+});
+
+
+document
+.getElementById(page)
+.classList.add(
+"active"
+);
+
+
+window.scrollTo(
+0,
+0
+);
+
+}
+
+
+/* ================= UPDATE ================= */
+
+
+function updateScreen() {
+
+
+document
+.getElementById(
+"workoutCount"
+)
+.innerText =
+workoutCount;
+
+
+document
+.getElementById(
+"days"
+)
+.innerText =
+streak;
+
+
+document
+.getElementById(
+"streakNumber"
+)
+.innerText =
+streak;
+
+
+document
+.getElementById(
+"weeks"
+)
+.innerText =
+Math.floor(
+streak / 7
+);
+
+}
+
+
+/* ================= STREAK ================= */
+
+
+function updateStreak() {
+
+
+let today =
+new Date();
+
+
+today.setHours(
+0,
+0,
+0,
+0
+);
+
+
+if (!lastWorkout) {
+
+
+streak = 1;
+
+
+}
+
+else {
+
+
+let last =
+new Date(
+lastWorkout
+);
+
+
+last.setHours(
+0,
+0,
+0,
+0
+);
+
+
+let difference =
+Math.floor(
+(today - last) /
+86400000
+);
+
+
+if (
+difference === 0
+) {
+
+
+}
+
+else if (
+difference === 1
+) {
+
+
+streak++;
+
+}
+
+else {
+
+
+streak = 1;
+
+}
+
+}
+
+
+lastWorkout =
+today.toISOString();
+
+
+localStorage.setItem(
+"fitbroStreak",
+streak
+);
+
+
+localStorage.setItem(
+"fitbroLastWorkout",
+lastWorkout
+);
+
+}
+
+
+/* ================= COMPLETE ================= */
+
+
+function completeWorkout() {
+
+
+workoutCount++;
+
+
+localStorage.setItem(
+"fitbroWorkoutCount",
+workoutCount
+);
+
+
+updateStreak();
+
+
+updateScreen();
+
+
+document
+.getElementById(
+"successText"
+)
+.innerText =
+"Great job, " +
+userName +
+"! You completed your workout 💪";
+
+
+openPage(
+"success"
+);
+
+}
+
+
+/* ================= SOUND ================= */
+
+
+function playFinishSound() {
+
+
+try {
+
+
+let AudioContext =
+window.AudioContext ||
+window.webkitAudioContext;
+
+
+let audio =
+new AudioContext();
+
+
+let oscillator =
+audio.createOscillator();
+
+
+let gain =
+audio.createGain();
+
+
+oscillator.connect(
+gain
+);
+
+
+gain.connect(
+audio.destination
+);
+
+
+oscillator.type =
+"sine";
+
+
+oscillator.frequency.value =
+850;
+
+
+gain.gain.setValueAtTime(
+0.3,
+audio.currentTime
+);
+
+
+gain.gain.exponentialRampToValueAtTime(
+0.01,
+audio.currentTime + 0.6
+);
+
+
+oscillator.start();
+
+
+oscillator.stop(
+audio.currentTime + 0.6
+);
+
+
+}
+
+catch(error) {
+
+
+console.log(
+"Sound error"
+);
+
+}
+
+}
+
+
+/* ================= TIMER ================= */
+
+
+function openTimer(
+exercise
+) {
+
+
+clearInterval(
+timer
+);
+
+
+seconds = 30;
+
+
+currentExercise =
+exercise;
+
+
+document
+.getElementById(
+"timerName"
+)
+.innerText =
+exercise;
+
+
+document
+.getElementById(
+"timerNumber"
+)
+.innerText =
+seconds;
+
+
+document
+.getElementById(
+"timerButton"
+)
+.innerText =
+"START";
+
+
+openPage(
+"timerPage"
+);
+
+}
+
+
+/* ================= TIMER BUTTON ================= */
+
+
+document
+.getElementById(
+"timerButton"
+)
+.addEventListener(
+"click",
+function() {
+
+
+let button =
+document
+.getElementById(
+"timerButton"
+);
+
+
+if (
+button.innerText ===
+"START"
+) {
+
+
+button.innerText =
+"PAUSE";
+
+
+timer =
+setInterval(
+function() {
+
+
+seconds--;
+
+
+document
+.getElementById(
+"timerNumber"
+)
+.innerText =
+seconds;
+
+
+if (
+seconds <= 0
+) {
+
+
+clearInterval(
+timer
+);
+
+
+button.innerText =
+"START";
+
+
+playFinishSound();
+
+
+completeWorkout();
+
+}
+
+},
+1000
+);
+
+
+}
+
+else {
+
+
+clearInterval(
+timer
+);
+
+
+button.innerText =
+"START";
+
+}
+
+}
+);
+
+
+/* ================= EXERCISES ================= */
+
+
+function showExercises(
+name,
+exercises
+) {
+
+
+document
+.getElementById(
+"exerciseTitle"
+)
+.innerText =
+name;
+
+
+let list =
+document
+.getElementById(
+"exerciseList"
+);
+
+
+list.innerHTML =
+"";
+
+
+exercises.forEach(
+function(exercise) {
+
+
+let div =
+document.createElement(
+"div"
+);
+
+
+div.className =
+"exercise";
+
+
+div.innerHTML =
+"<h3>" +
+exercise +
+"</h3>" +
+"<p>30 seconds • Tap to start</p>";
+
+
+div.addEventListener(
+"click",
+function() {
+
+
+openTimer(
+exercise
+);
+
+});
+
+
+list.appendChild(
+div
+);
+
+});
+
+
+openPage(
+"exercisePage"
+);
+
+}
+
+
+/* ================= HOME ================= */
+
+
+document
+.getElementById(
+"startWorkout"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"workouts"
+);
+
+});
+
+
+document
+.getElementById(
+"strengthButton"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"workouts"
+);
+
+});
+
+
+document
+.getElementById(
+"cardioButton"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"cardio"
+);
+
+});
+
+
+document
+.getElementById(
+"nutritionButton"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"nutrition"
+);
+
+});
+
+
+document
+.getElementById(
+"progressButton"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"progress"
+);
+
+});
+
+
+/* ================= WORKOUTS ================= */
+
+
+document
+.getElementById(
+"chest"
+)
+.addEventListener(
+"click",
+function() {
+
+
+showExercises(
+"Chest Workout",
+[
+"Push-ups",
+"Bench Press",
+"Chest Fly",
+"Diamond Push-ups"
+]
+);
+
+});
+
+
+document
+.getElementById(
+"legs"
+)
+.addEventListener(
+"click",
+function() {
+
+
+showExercises(
+"Leg Workout",
+[
+"Squats",
+"Lunges",
+"Calf Raises",
+"Jump Squats"
+]
+);
+
+});
+
+
+document
+.getElementById(
+"abs"
+)
+.addEventListener(
+"click",
+function() {
+
+
+showExercises(
+"Abs Workout",
+[
+"Crunches",
+"Plank",
+"Leg Raises",
+"Bicycle Crunches"
+]
+);
+
+});
+
+
+document
+.getElementById(
+"arms"
+)
+.addEventListener(
+"click",
+function() {
+
+
+showExercises(
+"Arms Workout",
+[
+"Bicep Curls",
+"Tricep Dips",
+"Push-ups",
+"Diamond Push-ups"
+]
+);
+
+});
+
+
+document
+.getElementById(
+"back"
+)
+.addEventListener(
+"click",
+function() {
+
+
+showExercises(
+"Back Workout",
+[
+"Pull-ups",
+"Rows",
+"Superman",
+"Reverse Snow Angels"
+]
+);
+
+});
+
+
+document
+.getElementById(
+"shoulders"
+)
+.addEventListener(
+"click",
+function() {
+
+
+showExercises(
+"Shoulder Workout",
+[
+"Shoulder Press",
+"Lateral Raises",
+"Front Raises",
+"Pike Push-ups"
+]
+);
+
+});
+
+
+document
+.getElementById(
+"fullbody"
+)
+.addEventListener(
+"click",
+function() {
+
+
+showExercises(
+"Full Body",
+[
+"Squats",
+"Push-ups",
+"Burpees",
+"Mountain Climbers"
+]
+);
+
+});
+
+
+/* ================= CARDIO ================= */
+
+
+document
+.getElementById(
+"running"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openTimer(
+"Running"
+);
+
+});
+
+
+document
+.getElementById(
+"cycling"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openTimer(
+"Cycling"
+);
+
+});
+
+
+document
+.getElementById(
+"hiit"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openTimer(
+"HIIT"
+);
+
+});
+
+
+document
+.getElementById(
+"jumpRope"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openTimer(
+"Jump Rope"
+);
+
+});
+
+
+/* ================= PROFILE ================= */
+
+
+document
+.getElementById(
+"profileProgress"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"progress"
+);
+
+});
+
+
+document
+.getElementById(
+"profileSettings"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"settingsPage"
+);
+
+});
+
+
+/* ================= CHANGE PROFILE ================= */
+
+
+document
+.getElementById(
+"changeProfile"
+)
+.addEventListener(
+"click",
+function() {
+
+
+localStorage.removeItem(
+"fitbroName"
+);
+
+
+localStorage.removeItem(
+"fitbroGoal"
+);
+
+
+location.reload();
+
+});
+
+
+/* ================= RESET ================= */
+
+document
+.getElementById("resetProgress")
+.addEventListener("click", function() {
+
+    localStorage.removeItem("fitbroWorkoutCount");
+    localStorage.removeItem("fitbroStreak");
+    localStorage.removeItem("fitbroLastWorkout");
+
+    workoutCount = 0;
+    streak = 0;
+    lastWorkout = null;
+
+    updateScreen();
+
+    document.getElementById("workoutCount").innerText = "0";
+    document.getElementById("days").innerText = "0";
+    document.getElementById("streakNumber").innerText = "0";
+    document.getElementById("weeks").innerText = "0";
+
+});
+
+
+/* ================= BACK ================= */
+
+
+document
+.getElementById(
+"backWorkout"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"home"
+);
+
+});
+
+
+document
+.getElementById(
+"backExercises"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"workouts"
+);
+
+});
+
+
+document
+.getElementById(
+"backTimer"
+)
+.addEventListener(
+"click",
+function() {
+
+
+clearInterval(
+timer
+);
+
+
+openPage(
+"exercisePage"
+);
+
+});
+
+
+document
+.getElementById(
+"backCardio"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"home"
+);
+
+});
+
+
+document
+.getElementById(
+"backNutrition"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"home"
+);
+
+});
+
+
+document
+.getElementById(
+"backProgress"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"home"
+);
+
+});
+
+
+document
+.getElementById(
+"backProfile"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"home"
+);
+
+});
+
+
+document
+.getElementById(
+"backSettings"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"profile"
+);
+
+});
+
+
+/* ================= SUCCESS ================= */
+
+
+document
+.getElementById(
+"successProgress"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"progress"
+);
+
+});
+
+
+document
+.getElementById(
+"successHome"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"home"
+);
+
+});
+
+
+/* ================= NAV ================= */
+
+
+document
+.getElementById(
+"navHome"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"home"
+);
+
+});
+
+
+document
+.getElementById(
+"navWorkout"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"workouts"
+);
+
+});
+
+
+document
+.getElementById(
+"navProgress"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"progress"
+);
+
+});
+
+
+document
+.getElementById(
+"navProfile"
+)
+.addEventListener(
+"click",
+function() {
+
+
+openPage(
+"profile"
+);
+
+});
+
+
+/* ================= FINISH ================= */
+
+
+document
+.getElementById(
+"finishWorkout"
+)
+.addEventListener(
+"click",
+function() {
+
+
+clearInterval(
+timer
+);
+
+
+completeWorkout();
+
+});
+
+
+/* ================= STARTUP ================= */
+
+
+if (
+userName &&
+userGoal
+) {
+
+
+startApp();
+
+
+}
+
+else {
+
+
+document
+.getElementById(
+"app"
+)
+.style.display =
+"none";
+
+}
+
+</script>
+
+</body>
+
+</html>
